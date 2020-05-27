@@ -15,6 +15,11 @@ const jwtSecret = require('./config/jwt_config.js');
 const tokenGenerator = require('uuid-token-generator');
 const jwt = require ('koa-jwt');
 
+if ('development' === app.get('env')) {
+    app.use(express.errorHandler());
+  }
+
+  
 // require('./middleware/jwtStrategy')(passport);
 
 const router = require('./routes/index');
