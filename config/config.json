@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "zhenya",
+    "password": "zhenya",
+    "database": "socialTrack",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": true
+  },
+  "test": {
+    "username": "zhenya",
+    "password": "zhenya",
+    "database": "socialTrack",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": true
+  },
+  "production": {
+    "username": "zhenya",
+    "password": "zhenya",
+    "database": "socialTrack",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": true
+  }
+}
