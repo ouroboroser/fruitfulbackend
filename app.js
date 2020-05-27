@@ -2,6 +2,7 @@ const Koa = require('koa');
 const app = new Koa();
 const PORT = process.env.PORT || 3001;
 const cors = require('@koa/cors');
+const models = require('./models');
 
 app.use(cors());
 
@@ -51,8 +52,14 @@ app.use(getStatistics.routes());
 app.use(findUser.routes());
 app.use(friendsToDo.routes());
 
-app.listen(PORT, () => {
-    console.log('Server has been stared');
-});
+
+models.sequelize.sync({forse:true}).then(function () {
+    app.listen(PORT, () => {
+        console.log('Server has been stared');
+    });
+})
+// app.listen(PORT, () => {
+//     console.log('Server has been stared');
+// });
 
 module.exports = app;
