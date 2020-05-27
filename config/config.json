@@ -21,6 +21,7 @@
     "database": "socialTrack",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "operatorsAliases": true
+    "operatorsAliases": true,
+    "use_env_variable": "DATABASE_URL"
   }
 }
