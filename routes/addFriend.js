@@ -5,12 +5,9 @@ const passport = require('koa-passport');
 const jwt_decode = require('jwt-decode');
 
 
-router.post('/addfriend/:friendNick', passport.authenticate('jwt', {session:false}), async(ctx, next) => {
+router.post('/addfriend/:friendId', passport.authenticate('jwt', {session:false}), async(ctx, next) => {
     try{
-        const friendIdHelper = await models.User.findOne({
-            where:{nick:ctx.params.friendNick}
-        })
-        const friendId = friendIdHelper.dataValues.id;
+        const friendId = ctx.params.friendId;
         const accessToken = getToken(ctx.headers);
         const decoded = jwt_decode(accessToken);
         const userId = decoded.id
