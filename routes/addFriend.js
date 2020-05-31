@@ -32,7 +32,24 @@ router.get('/allfriends', passport.authenticate('jwt', {session:false}), async (
       }
     })
 
-    ctx.body = relationship;
+    const allRelationship = relationship.filter(obj => {
+      return obj.userId
+    })
+
+    const allRelationshipId = allRelationship.map( ships => ships.friendId)
+    const allRelationshipIdUnique = allRelationshipId.filter(findUnique)
+    const allRelationshipIdUniqueValues = Object.values(allRelationshipIdUnique)
+    
+    const finalResult = await Promise.all(allRelationshipIdUniqueValues.map( async(item) => {
+      return await models.User.findOne({
+        where:{
+          id:item
+        }
+      })
+    }))
+
+    ctx.body = finalResult;
+
   }
 
   catch(error){
@@ -53,5 +70,10 @@ getToken = function (headers) {
       return null;
     }
   };
+
+
+  const findUnique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  }
   
   module.exports = router;
