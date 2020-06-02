@@ -33,7 +33,7 @@ const getStatistics = require('./routes/getStatistics');
 const findUser = require('./routes/findUser');
 const friendsToDo = require('./routes/friendsToDo');
 const addFriend = require('./routes/addFriend');
-// const comment = require('./routes/comment');
+const comment = require('./routes/comment');
 
 app.use(koaBodyParser());
 app.use(router.allowedMethods());
@@ -54,7 +54,7 @@ app.use(getStatistics.routes());
 app.use(findUser.routes());
 app.use(friendsToDo.routes());
 app.use(addFriend.routes());
-// app.use(commnet.routes());
+app.use(commnet.routes());
 
 
 models.sequelize.sync({forse:true}).then(function () {

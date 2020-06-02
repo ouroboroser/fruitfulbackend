@@ -9,11 +9,14 @@ const jwt_decode = require ('jwt-decode');
 
 router.get('/todocomment/:id', passport.authenticate('jwt', {session: false}), async(ctx, next) => {
     try{
-        return await models.ToDo.findOne ({
-            where: {
-                id: ctx.params.id
+        const toDoItemId = ctx.params.id;
+        const toDoItem = await models.ToDo.findOne({
+            where:{
+                id:toDoItemId
             }
         }) 
+
+        ctx.body = toDoItem
         .then((toDo => {
             ctx.toDo = toDo;
             console.log(toDo);
