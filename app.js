@@ -54,7 +54,7 @@ app.use(getStatistics.routes());
 app.use(findUser.routes());
 app.use(friendsToDo.routes());
 app.use(addFriend.routes());
-app.use(commnet.routes());
+app.use(comment.routes());
 
 
 models.sequelize.sync({forse:true}).then(function () {
