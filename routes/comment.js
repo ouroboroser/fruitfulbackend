@@ -9,10 +9,10 @@ const jwt_decode = require ('jwt-decode');
 
 router.get('/todocomment/:id', passport.authenticate('jwt', {session: false}), async(ctx, next) => {
     try{
-        const toDoItemId = ctx.params.id;
+        // const toDoItemId = ctx.params.id;
         const toDoItem = await models.ToDo.findOne({
             where:{
-                id:toDoItemId
+                id:ctx.params.id
             }
         }) 
 
