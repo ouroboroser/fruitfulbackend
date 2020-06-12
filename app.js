@@ -35,6 +35,18 @@ const friendsToDo = require('./routes/friendsToDo');
 const addFriend = require('./routes/addFriend');
 const comment = require('./routes/comment');
 
+const error = async (ctx, next) => {
+    try{
+        await next();
+    }
+
+    catch(error){
+        status = ctx.status;
+        ctx.body = error.message;
+    }
+}
+
+app.use(error);
 app.use(koaBodyParser());
 app.use(router.allowedMethods());
 

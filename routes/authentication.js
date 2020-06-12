@@ -9,18 +9,11 @@ const bcrypt = require('bcryptjs');
 const models = require ('../models');
 
 router.post('/signup', async (ctx, next) => {
-    try {
-        const { nick, name, email, password} = ctx.request.body
-        let hashedPassword = bcrypt.hashSync(password, 10);
-        let userData = await models.User.create({ nick, name, email, password:hashedPassword})         
-        ctx.body = userData;
-        await next();
-    }
-    catch (error) {
-        console.error('error: ', error);
-        ctx.status = 400;
-        ctx.body = {status:'User authorization error 2'};
-    }
+    const { nick, name, email, password} = ctx.request.body
+    let hashedPassword = bcrypt.hashSync(password, 10);
+    let userData = await models.User.create({ nick, name, email, password:hashedPassword})         
+    ctx.body = userData;
+    await next();
 })
 
 router.post('/login', async (ctx, next) => {
@@ -46,16 +39,11 @@ router.post('/login', async (ctx, next) => {
 })
 
 router.get('/logout', async (ctx, next) => {
-    try {
-        ctx.logout();
-        ctx.redirect('/');
-        console.log ('User has logout');
-        ctx.body = {status:'User has logout'};
-        await next();
-    } catch (error) {
-        console.error('error: ', error);
-        ctx.status = 400;
-    }
+    ctx.logout();
+    ctx.redirect('/');
+    console.log ('User has logout');
+    ctx.body = {status:'User has logout'};
+    await next();
 })
                
 module.exports = router;
