@@ -26,7 +26,7 @@ const jwt = require ('koa-jwt');
 
 const router = require('./routes/index');
 const authRouter = require('./routes/authentication');
-const addNote = require('./routes/addNote');
+//const addNote = require('./routes/addNote');
 const addToDo = require ('./routes/addToDo');
 const updateToDo = require('./routes/updateToDo');
 const getUser = require('./routes/getUser');
@@ -59,7 +59,7 @@ app.use(router.routes());
 app.use(authRouter.routes());
 
 // app.use(jwt({ secret:jwtSecret.secret}))
-app.use(addNote.routes());
+//app.use(addNote.routes());
 app.use(addToDo.routes());
 app.use(updateToDo.routes());
 app.use(getUser.routes());
