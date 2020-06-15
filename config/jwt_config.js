@@ -1,6 +1,6 @@
 module.exports = {
     secret:'jwt-secret',
-    tokenLife:255000,
+    tokenLife:'1d',
     refreshTokenLife: 255000,
     refreshTokenSecret:'password',
 
